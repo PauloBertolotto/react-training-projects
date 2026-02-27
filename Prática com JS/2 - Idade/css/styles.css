@@ -1,0 +1,49 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    color: yellow;
+    border-bottom: 1px solid white;
+    
+}
+
+.container {
+    display: block;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 250px 0 250px;
+}
+
+#dataNasc {
+    font-size: 20px;
+}
+
+#dataNasc input{
+    border: none;
+}
+
+button {
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+#resultado {
+    margin-top: 10px;
+    border: 1px solid white;
+}
+
+#resultado {
+    font-size: 30px;
+}

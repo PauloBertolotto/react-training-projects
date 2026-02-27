@@ -1,0 +1,126 @@
+.conteudo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bonus {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background-color: transparent;
+}
+
+.registration,
+.localization,
+.payment,
+.lowPrice,
+.topSale,
+.buyProtected {
+  flex: 0 0 auto;
+  width: 180px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  overflow-x: hidden;
+}
+
+.registration h4,
+.localization h4,
+.payment h4,
+.lowPrice h4,
+.topSale h4,
+.buyProtected h4 {
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.registration img,
+.localization img,
+.payment img,
+.lowPrice img,
+.topSale img,
+.buyProtected img {
+  width: 150px;
+  height: 130px;
+  object-fit: contain;
+}
+
+.registration div button,
+.localization div button,
+.payment div button,
+.lowPrice div button,
+.topSale div button,
+.buyProtected div button {
+  background-color: #E0FFFF;
+  color: #00BFFF;
+  padding: 5px 10px;
+  margin: 5px 50px 0 50px;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  width: 160px;
+}
+
+.registration div p,
+.localization div p,
+.payment div p,
+.lowPrice div p,
+.topSale div p,
+.buyProtected div p {
+  text-align: center;
+  font-size: 12px;
+  margin: 10px 50px 30px 50px;
+}
+
+.registration:hover,
+.localization:hover,
+.payment:hover,
+.lowPrice:hover,
+.topSale:hover,
+.buyProtected:hover {
+  p {
+    color: #00BFFF;
+  }
+  button {
+    background-color: #cae7e7;
+  }
+}
+
+.card-button {
+  display: inline-block;
+  background-color: #E0FFFF;
+  color: #00BFFF;
+  padding: 5px 10px;
+  margin: 5px 50px 0 50px;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  width: 160px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.registration:hover .card-button,
+.localization:hover .card-button,
+.payment:hover .card-button,
+.lowPrice:hover .card-button,
+.topSale:hover .card-button,
+.buyProtected:hover .card-button {
+  background-color: #cae7e7;
+}

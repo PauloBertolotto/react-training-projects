@@ -1,0 +1,221 @@
+
+
+.compras-titulo h1 {
+    position: absolute;
+    object-fit: cover;
+    object-position: top;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background-color: rgb(31, 78, 150);
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    height: 82px;
+    line-height: 75px;
+    justify-content: center;
+    text-size-adjust: 100%;
+    margin-top: 120px;
+    letter-spacing: 1px;
+}
+
+.container-compras {
+    display: flex;
+    gap: 30px;
+    padding: 0px;
+    background-color: #f0efef;
+    width: 100%;
+    margin-top: 100px;
+}
+
+
+
+.buscas-compras {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: gray;
+}
+
+.buscas-compras .tema {
+    padding: 5px 0;
+    margin-bottom: 10px;
+}
+
+.tema span {
+    cursor: pointer;
+}
+
+.buscas-compras .tema-especifico {
+    padding: 5px 0;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.buscas-compras .categorias {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.categorias span {
+    cursor: pointer;
+}
+
+.produtos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+.buscas-desejadas,
+.tendencias,
+.outras-buscas,
+.catalago {
+    padding: 5px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.corpo {
+    display: flex;
+    gap: 15px;
+    
+}
+
+.produtos-recomendados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.popularidade {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 35%;
+    padding: 1px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    background-color: rgba(71, 154, 209, 0.15);
+    color: rgb(52, 131, 250);
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.pack-imagem {
+    padding: 0 10px;
+}
+
+.pack-imagem img{
+    height: 48px;
+    width: 130px;
+    margin: 0 20px;
+}
+
+.pack-imagem p {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.catalago {
+    
+    display: flex;
+    margin-left: 4px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    width: 795px;
+    border-radius: 5px;
+
+}
+
+.item {
+    flex-grow: 1;
+    width: 200px;
+    height: 500px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.4);
+}
+
+.imagem-produto img {
+    width: 100%;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.info-produto {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    text-align: start;
+}
+
+.info-produto .posicao {
+    font-size: 11px;
+    font-weight: bold;
+    background-color: rgb(255, 119, 51);
+    color: white;
+    width: 50%;
+    white-space: nowrap;
+    padding: 3px;
+    border-radius: 2px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.info-produto .descricao {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.classificacao {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.valor {
+    font-size: 25px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.parcelas {
+    color: rgb(0, 166, 80);
+    margin-bottom: 10px;
+}
+
+.frete {
+    color: rgb(0, 166, 80);
+    
+}

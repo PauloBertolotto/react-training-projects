@@ -1,0 +1,70 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    display: block;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#cadCarros {
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 20px 80px 10px 80px;
+}
+
+input {
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+}
+
+input:hover {
+  background-color: grey;
+}
+
+#botoes {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    padding: 5px 20px 5px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: gray;
+}
+
+.listaCarros {
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 20px 80px 10px 80px;
+}
+
+.listaCarros h3 {
+    border-bottom: 1px solid white;
+    margin: 10px 110px 0 110px;
+    letter-spacing: 2px;
+}
+
+.listaCarros strong {
+    color: green;
+}

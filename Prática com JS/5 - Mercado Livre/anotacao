@@ -1,0 +1,28 @@
+<div class="ofertas">
+        <div class="recomendacao">
+            <div class="recomendacao-do-dia">
+                <a href="#">
+                    <div class="prod-recomendado">
+                        <h3>Oferta do dia</h3>
+                        <img src="img/ofertas/recomendacao/furadera.webp" alt="">
+                        <p id="descricao">Parafusadeira E Furadeira De Impacto 3/8 The Black Tools Tb21-pz Com 2
+                            Baterias E Acessorios
+                        </p>
+                        <p id="oldprice">R$ 369,90</p>
+                        <div class="desconto">
+                            <h2>R$ 199</h2>
+                            <p>46% OFF</p>
+                        </div>
+                        <p id="parcela">6x R$ 33,17 sem juros</p>
+                        <p id="cupom">Cupom R$ 2 OFF</p>
+                        <p id="frete">Frete grátis</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="recomendacao-extra">
+
+            </div>
+        </div>
+
+    </div>

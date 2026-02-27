@@ -1,0 +1,74 @@
+body {
+    background-color: #E0FFFF;
+}
+
+.container {
+    text-align: center;
+    margin: 0 200px 0 200px;
+    box-shadow: 1px 5px 5px black;
+    padding: 10px;
+    background-color: #87CEFA;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+h1 {
+    border-bottom: 1px solid black;
+}
+
+.dados {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+}
+
+.limite, .infoPessoas {
+    flex: 1;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.limite:hover, .infoPessoas:hover {
+    box-shadow: 1px 5px 5px black;
+}
+
+.campo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.campo label {
+  width: 50px; /* largura fixa para alinhar */
+  text-align: right;
+  margin-right: 10px;
+}
+
+.campo input {
+  flex: 1; /* ocupa o restante do espaço */
+  padding: 1px;
+}
+
+button {
+    margin-top: 10px;
+    border: 1px solid black;
+    font-size: 20px;
+    padding: 0 20px 0 20px;
+    border-radius: 5px;
+}
+
+
+button:hover {
+    background-color: rgb(173, 190, 202);
+    cursor: pointer;
+    box-shadow: 1px 2px 2px black;
+}
+
+.resultado {
+    margin-top: 10px;
+    border: 1px solid black;
+    letter-spacing: 2px;
+    padding: 10px;
+}

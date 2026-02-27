@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 4</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Peso Limite no Elevador</h1>
+
+        <div class="dados">
+            <div class="limite">
+                <label for="limite de peso">Limite de peso: </label>
+                <input type="text" id="inputLimite" required>
+            </div>
+
+            <div class="infoPessoas">
+                <div class="campo">
+                    <label for="inputNome">Nome:</label>
+                    <input type="text" id="inputNome" required>
+                </div>
+
+                <div class="campo">
+                    <label for="inputIdade">Idade:</label>
+                    <input type="text" id="inputIdade" required>
+                </div>
+
+                <div class="campo">
+                    <label for="inputPeso">Peso:</label>
+                    <input type="text" id="inputPeso" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Calcular</button>
+        <button type="button" id="btnAdicionar">Add Pessoa</button>
+
+        <div class="listaPessoas"></div>
+        <div class="resultado"></div>
+</body>
+
+</html>

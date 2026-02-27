@@ -1,0 +1,141 @@
+.ofertas {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    gap: 16px;
+    background-color: transparent;
+    width: 100%;
+}
+
+.recomendacao {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    padding-bottom: 0;
+    margin: 0 10px;
+    margin-right: 10px;
+    overflow-x: hidden;
+}
+
+.recomendacao-do-dia img{
+    width: 300px;
+}
+
+.recomendacao-do-dia {
+    flex-grow: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.prod-recomendado,
+.prod-recomendado-extra {
+    margin: 5px;
+}
+
+.prod-recomendado h2,
+.prod-recomendado h3,
+.prod-recomendado-extra h2,
+.prod-recomendado-extra h3 {
+    color: black;
+}
+
+.prod-recomendado h2,
+.prod-recomendado-extra h2 {
+  font-weight: normal;
+}
+
+.prod-recomendado h3,
+.prod-recomendado-extra h3 {
+  margin-bottom: 5px;
+}
+
+.recomendacao-extra {
+    flex-grow: 2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.recomendacao-extra img{
+    width: 170px;
+    height: 230px;
+}
+
+.ofertasGerais {
+    display: flex;
+    justify-content: space-between;
+}
+
+.linkOfertas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#linkofertas {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #3560eb;
+}
+
+#descricao {
+    color: black;
+    margin: 10px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;       /* número de linhas visíveis */
+    -webkit-box-orient: vertical;    
+    overflow: hidden;            
+    text-overflow: ellipsis;   
+}
+
+#oldprice {
+    color: grey;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+.desconto {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.off {
+    margin-top: 4px;
+    color: green;
+}
+
+#parcela {
+    color: green;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+#cupom {
+    background-color: #ceeafd;
+    width: 120px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2b7fec;
+    text-align: center;
+    border-radius: 2px;
+    padding: 1px;
+    margin-bottom: 10px;
+}
+
+#frete {
+    color: green;
+    font-size: 13px;
+}
+
+.prod-recomendado:hover,
+.prod-recomendado-extra:hover {
+    #descricao {
+        color: #2b7fec;
+    }
+}

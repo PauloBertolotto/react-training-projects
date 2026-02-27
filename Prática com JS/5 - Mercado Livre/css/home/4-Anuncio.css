@@ -1,0 +1,96 @@
+.anuncioMeli {
+    overflow-x: auto;
+    box-sizing: border-box;
+    justify-content: space-between;
+    max-width: 1160px;
+    gap: 16px;
+    background-color: transparent;
+    overflow-x: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.anuncioMeli a{
+    color: black;
+}
+
+.elementosAnuncio {
+    display: block;
+    padding: 15px;
+}
+
+#TopoAnuncio{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.meli-title {
+    display: flex;
+    gap: 10px;
+}
+
+.meli-title img{
+    width: 85px;
+}
+
+.meli-title span{
+    background: linear-gradient(to right, #3c0074, #c50083 96%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title {
+    height: 40px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.btnAssinatura {
+    background-color: rgb(89, 113, 252);
+    color: white;
+    text-align: center;
+    width: 100px;
+    font-size: 13px;
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+}
+
+#corpoAnuncio {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+    gap: 20px;
+}
+
+#corpoAnuncio img {
+    width: 250px;
+}
+
+.beneficioAnuncio {
+  position: relative;
+}
+
+
+.beneficioAnuncio:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  right: 0;
+  height: 35%;
+  width: 2px;
+  background-color: rgb(219, 219, 219);
+}
+
+
+.textBeneficioAnuncio {
+    margin: 5px 30px;
+}

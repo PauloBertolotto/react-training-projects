@@ -1,0 +1,97 @@
+.beneficios {
+    padding: 20px;
+    width: 96.7%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.row-beneficios {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+#superior {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 10px 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+#inferior {
+    display: flex;
+    justify-content: space-between;
+}
+
+#inferior img{
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+}
+
+.disney,
+.max,
+.gplay {
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 10px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+}
+
+.disney {
+    background-image: url('img/anuncios/beneficios/fundo-disney.png');
+}
+
+.max {
+    background-image: url('img/anuncios/beneficios/fundo-max.png');
+    background-size: cover;
+}
+
+.gplay {
+    background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1.0) 100%),
+    url('img/anuncios/beneficios/fundo-gplay.png');
+    background-size: cover;
+}
+
+.disney-conteudo,
+.max-conteudo,
+.gplay-conteudo {
+    display: flex;
+    margin: 44% 5% 0 5%;
+    gap: 15px;
+    
+}
+
+.disney-text,
+.max-text,
+.gplay-text {
+    margin-top: 10px;
+}
+
+.disney-conteudo p,
+.max-conteudo p,
+.gplay-conteudo p{
+   width: 100px;
+   white-space: nowrap;  
+   font-weight: bold;
+   letter-spacing: 1px;
+   font-size: 18px;
+}
+
+.disney-text #bot,
+.max-text #bot,
+.gplay-text #bot {
+    font-weight: normal;
+    margin-top: 5px;
+    font-size: 15px;
+}
