@@ -22,54 +22,105 @@ import {
   criarProfessor,
   atualizarProfessor,
   atualizarProfessorDisciplina,
+  buscarProfessorComDisciplinaPorId,
 } from "@/services/professores";
 
 const ProfessorDisciplina = ({ professor, onVoltar }) => {
   const [disciplinas, setDisciplinas] = useState([]);
+  const [fetched, setFetched] = useState(null);
+  const [loadingFetch, setLoadingFetch] = useState(false);
+
+  // Normalização dos dados
+  const prof = {
+    pessoa_id:
+      professor?.pessoa_id ?? professor?.pessoa?.id ?? professor?.id ?? "",
+    pessoa_nome:
+      professor?.pessoa_nome ??
+      professor?.pessoa?.nome ??
+      professor?.nome ??
+      "",
+    pessoa_email:
+      professor?.pessoa_email ??
+      professor?.pessoa?.email ??
+      professor?.email ??
+      "",
+    especialidade:
+      professor?.especialidade ?? professor?.professor?.especialidade ?? "",
+    titulo: professor?.titulo ?? professor?.professor?.titulo ?? "",
+    disciplina_id: professor?.disciplina_id ?? professor?.disciplina?.id ?? "",
+  };
 
   useEffect(() => {
     getDisciplinas()
-      .then(setDisciplinas)
-      .catch((err) => {
-        console.error(err);
-        alert("Erro ao carregar disciplinas");
-      });
+      .then((res) => {
+        const data = res?.data ?? res;
+        setDisciplinas(Array.isArray(data) ? data : []);
+      })
+      .catch(() => alert("Erro ao carregar disciplinas"));
   }, []);
 
-  const disciplinaVinculo = professor?.professor_disciplina?.[0]?.Disciplina;
+  useEffect(() => {
+    if (!prof.pessoa_id) return;
+
+    setLoadingFetch(true);
+
+    buscarProfessorComDisciplinaPorId(prof.pessoa_id)
+      .then((resp) => {
+        const data = resp?.data ?? resp;
+
+        const disciplinaId =
+          data?.disciplina_id ??
+          data?.Disciplina?.id ??
+          data?.professor_disciplina?.[0]?.disciplina_id ??
+          data?.professor_disciplina?.[0]?.Disciplina?.id ??
+          "";
+
+        console.log("DADOS BACKEND:", data);
+        console.log("professor_disciplina:", data?.professor_disciplina);
+        console.log("disciplina direto:", data?.disciplina);
+
+        setFetched({
+          pessoa_id: prof.pessoa_id,
+          pessoa_nome: data?.pessoa?.nome ?? data?.Pessoa?.nome ?? "",
+          pessoa_email: data?.pessoa?.email ?? data?.Pessoa?.email ?? "",
+          especialidade: data?.especialidade ?? "",
+          titulo: data?.titulo ?? "",
+          disciplina_id: disciplinaId ? String(disciplinaId) : "",
+        });
+      })
+      .finally(() => setLoadingFetch(false));
+  }, [prof.pessoa_id]);
+
+  // Verifica se o id da disciplina existe na lista
+  const disciplinaValida = (id) => {
+    if (!id) return "";
+    return disciplinas.find((d) => String(d.id) === String(id))
+      ? String(id)
+      : "";
+  };
 
   const initialValues = {
-    pessoa_id: professor?.id || "",
-    pessoa_nome: professor?.Pessoa?.nome || professor?.pessoa_nome || "",
-    pessoa_email: professor?.Pessoa?.email || professor?.pessoa_email || "",
-    pessoa_cpf: professor?.Pessoa?.cpf || professor?.pessoa_cpf || "",
-    especialidade: professor?.especialidade || "",
-    titulo: professor?.titulo || "",
-    disciplina_id:
-      professor?.disciplina_id || disciplinaVinculo?.id || undefined,
-    carga_horaria:
-      disciplinaVinculo?.carga_horaria || professor?.carga_horaria || "",
+    pessoa_id: fetched?.pessoa_id || prof.pessoa_id,
+    pessoa_nome: fetched?.pessoa_nome || prof.pessoa_nome,
+    pessoa_email: fetched?.pessoa_email || prof.pessoa_email,
+    especialidade: fetched?.especialidade || prof.especialidade,
+    titulo: fetched?.titulo || prof.titulo,
+    disciplina_id: disciplinaValida(
+      fetched?.disciplina_id || prof.disciplina_id,
+    ),
   };
 
   const validationSchema = Yup.object({
     pessoa_id: Yup.string().required("Professor não selecionado"),
     disciplina_id: Yup.string().required("Disciplina não selecionada"),
-    especialidade: Yup.string()
-      .trim()
-      .min(3)
-      .max(100)
-      .required("Especialidade é obrigatória"),
-    titulo: Yup.string()
-      .trim()
-      .min(2)
-      .max(100)
-      .required("Título é obrigatório"),
+    especialidade: Yup.string().min(3).max(100).required(),
+    titulo: Yup.string().min(2).max(100).required(),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
     try {
-      if (!professor?.especialidade && !professor?.titulo) {
+      if (!fetched?.especialidade && !fetched?.titulo) {
         await criarProfessor({
           pessoa_id: values.pessoa_id,
           disciplina_id: values.disciplina_id,
@@ -79,171 +130,109 @@ const ProfessorDisciplina = ({ professor, onVoltar }) => {
         });
         alert("Professor vinculado à disciplina com sucesso!");
       } else if (
-        values.disciplina_id &&
         values.disciplina_id !==
-          (professor?.disciplina_id ||
-            professor?.professor_disciplina?.[0]?.disciplina_id)
+        String(fetched?.disciplina_id ?? prof.disciplina_id ?? "")
       ) {
         await atualizarProfessorDisciplina(values.pessoa_id, {
           disciplina_id: values.disciplina_id,
         });
-        alert("Disciplina do professor atualizada com sucesso!");
+        alert("Disciplina atualizada com sucesso!");
       } else {
         await atualizarProfessor(values.pessoa_id, {
           especialidade: values.especialidade,
           titulo: values.titulo,
         });
-        alert("Dados do professor atualizados com sucesso!");
+        alert("Dados atualizados com sucesso!");
       }
 
       if (onVoltar) onVoltar();
     } catch (error) {
-      console.error(error);
-      alert(error.message || "Erro ao salvar professor e vínculo");
+      alert("Erro ao salvar");
     } finally {
       setSubmitting(false);
     }
   };
 
+  const formKey = `${initialValues.pessoa_id}-${initialValues.disciplina_id}-${disciplinas.length}`;
+
   return (
     <Area>
       <Formik
+        key={formKey}
         initialValues={initialValues}
-        enableReinitialize={true}
+        enableReinitialize
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({
-          handleSubmit,
-          isSubmitting,
-          values,
-          setFieldValue,
-          errors,
-          touched,
-        }) => (
+        {({ handleSubmit, isSubmitting, values, setFieldValue }) => (
           <AddForm onSubmit={handleSubmit}>
             <Campos>
-              <Label htmlFor="pessoa_nome">Nome</Label>
+              <Label>Nome</Label>
               <Input
-                type="text"
                 value={values.pessoa_nome}
                 readOnly
-                className="w-full text-gray-900 bg-white"
+                className="w-full text-gray-900 placeholder:text-gray-400 bg-white"
               />
             </Campos>
 
             <Campos>
-              <Label htmlFor="pessoa_email">Email</Label>
+              <Label>Email</Label>
               <Input
-                type="email"
                 value={values.pessoa_email}
                 readOnly
-                className="w-full text-gray-900 bg-white"
+                className="w-full text-gray-900 placeholder:text-gray-400 bg-white"
               />
             </Campos>
 
             <Campos>
-              <Label htmlFor="pessoa_cpf">CPF</Label>
-              <Input
-                type="text"
-                value={values.pessoa_cpf}
-                readOnly
-                className="w-full text-gray-900 bg-white"
-              />
-            </Campos>
-
-            <Campos>
-              <Label htmlFor="especialidade">Especialidade</Label>
+              <Label>Especialidade</Label>
               <Field name="especialidade">
                 {({ field }) => (
                   <Input
                     {...field}
-                    type="text"
-                    id="especialidade"
-                    placeholder="Digite a especialidade"
                     className="w-full text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 )}
               </Field>
-              {touched.especialidade && errors.especialidade && (
-                <span className="text-red-500 text-sm">
-                  {errors.especialidade}
-                </span>
-              )}
             </Campos>
 
             <Campos>
-              <Label htmlFor="titulo">Título</Label>
+              <Label>Título</Label>
               <Field name="titulo">
                 {({ field }) => (
                   <Input
                     {...field}
-                    type="text"
-                    id="titulo"
-                    placeholder="Digite o título"
                     className="w-full text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 )}
               </Field>
-              {touched.titulo && errors.titulo && (
-                <span className="text-red-500 text-sm">{errors.titulo}</span>
-              )}
             </Campos>
 
             <Campos>
-              <Label htmlFor="disciplina_id">Disciplina</Label>
+              <Label>Disciplina</Label>
               <Select
-                value={values.disciplina_id || undefined}
-                onValueChange={(value) => {
-                  setFieldValue("disciplina_id", value);
-                  const selected = disciplinas.find(
-                    (d) => String(d.id) === String(value),
-                  );
-                  setFieldValue("carga_horaria", selected?.carga_horaria || "");
-                }}
+                value={values.disciplina_id}
+                onValueChange={(v) => setFieldValue("disciplina_id", v)}
               >
-                <SelectTrigger
-                  id="disciplina_id"
-                  className="w-full text-gray-900 bg-white"
-                >
+                <SelectTrigger className="w-full text-gray-900 placeholder:text-gray-400 bg-white">
                   <SelectValue placeholder="Selecione uma disciplina" />
                 </SelectTrigger>
                 <SelectContent>
                   {disciplinas.map((d) => (
-                    <SelectItem key={d.id} value={String(d.id)}>
+                    <SelectItem
+                      key={d.id}
+                      value={String(d.id)}
+                      className="text-gray-900"
+                    >
                       {d.nome}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              {touched.disciplina_id && errors.disciplina_id && (
-                <span className="text-red-500 text-sm">
-                  {errors.disciplina_id}
-                </span>
-              )}
             </Campos>
 
-            <Campos>
-              <Label htmlFor="carga_horaria">Carga Horária</Label>
-              <Field name="carga_horaria">
-                {({ field }) => (
-                  <Input
-                    {...field}
-                    type="text"
-                    id="carga_horaria"
-                    readOnly
-                    className="w-full text-gray-900 bg-white"
-                  />
-                )}
-              </Field>
-            </Campos>
-
-            <Button type="submit" disabled={isSubmitting} className="mt-4">
-              {isSubmitting
-                ? "Salvando..."
-                : professor?.especialidade || professor?.titulo
-                  ? "Atualizar"
-                  : "Adicionar à Disciplina"}
+            <Button type="submit" disabled={isSubmitting || loadingFetch}>
+              {isSubmitting ? "Salvando..." : "Salvar"}
             </Button>
           </AddForm>
         )}

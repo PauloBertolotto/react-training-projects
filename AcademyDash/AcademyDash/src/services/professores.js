@@ -5,6 +5,10 @@ export async function getProfessoresComDisciplina() {
   return getData("professores/com-disciplina");
 }
 
+export async function buscarProfessorComDisciplinaPorId(id) {
+  return getData(`professores/${id}/com-disciplina`);
+}
+
 export async function criarProfessor(values) {
   return postData("professores", values);
 }

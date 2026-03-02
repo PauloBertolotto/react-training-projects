@@ -33,7 +33,6 @@ const Paises = () => {
 
           <ListarPaises onSelecionarPais={handleSelecionarPaises} />
 
-          {/* Modal para alterar país */}
           <Modal
             isOpen={modalAlterar}
             onClose={() => setModalAlterar(false)}

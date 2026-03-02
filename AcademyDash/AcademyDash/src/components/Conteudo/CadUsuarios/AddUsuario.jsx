@@ -79,14 +79,14 @@ const AddUsuario = () => {
         },
       ),
     genero: Yup.string()
-      .oneOf(["masculino", "feminino", "outro", ""], "Gênero inválido")
+      .oneOf(["M", "F", "O", ""], "Gênero inválido")
       .nullable(),
     acesso: Yup.string().required("Selecione"),
     telefone: Yup.string()
-      .matches(/^\d{10,11}$/, "Telefone deve ter 10 ou 11 dígitos")
+      .matches(/^\d{9,10}$/, "Telefone deve ter 9 ou 10 dígitos")
       .nullable(),
     cep: Yup.string()
-      .matches(/^\d{8}$/, "CEP deve ter 8 dígitos")
+      .matches(/^\d{7,8}$/, "CEP deve ter 8 dígitos")
       .required("CEP é obrigatório"),
     numero: Yup.string().required("Número é obrigatório"),
     complemento: Yup.string().max(100, "Complemento muito longo"),
